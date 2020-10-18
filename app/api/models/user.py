@@ -60,6 +60,7 @@ public_user_api_model = Model(
             required=True,
             description="User availability to mentor or to be mentored indication",
         ),
+        "createdAt": fields.DateTime(required=False, description="User creation date and time"),
     },
 )
 
@@ -112,6 +113,7 @@ full_user_api_model = Model(
         "membership_status": fields.Integer(
             required=False, description="User membershipstatus"
         ),
+        "createdAt": fields.DateTime(required=False, description="User creation date and time"),
     },
 )
 

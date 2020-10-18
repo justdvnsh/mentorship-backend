@@ -1,6 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 import time
 from app.database.sqlalchemy_extension import db
+import datetime
 
 
 class UserModel(db.Model):
@@ -56,6 +57,7 @@ class UserModel(db.Model):
 
     need_mentoring = db.Column(db.Boolean)
     available_to_mentor = db.Column(db.Boolean)
+    created_at = db.Column(db.DateTime)
 
     def __init__(self, name, username, password, email, terms_and_conditions_checked):
         """Initialises userModel class with name, username, password, email, and terms_and_conditions_checked. """
@@ -78,6 +80,7 @@ class UserModel(db.Model):
 
         self.need_mentoring = False
         self.available_to_mentor = False
+        self.createdAt = datetime.datetime.now()
 
     def json(self):
         """Returns Usermodel object in json format."""
@@ -106,6 +109,7 @@ class UserModel(db.Model):
             "photo_url": self.photo_url,
             "need_mentoring": self.need_mentoring,
             "available_to_mentor": self.available_to_mentor,
+            "created_at": self.created_at
         }
 
     def __repr__(self):
